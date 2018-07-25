@@ -23,7 +23,7 @@ class App extends Component {
                 <ConnectedRouter history={history}>
                     <Switch>
                         <Route exact  path='/' render={() =><Redirect to='/recipes'/>}/>
-                        <Route exact  path='/recipes' component={RecipeForm}/>
+                        <Route exact  path='/recipes' component={RecipeList}/>
                         <Route  path='/recipes/add' component={RecipeForm}/>
                         <Route  path='/:id/edit' component={RecipeForm}/>
                         <Route  path='/:id' component={RecipeForm}/>

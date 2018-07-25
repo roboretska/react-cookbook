@@ -11,7 +11,7 @@ export default function RecipeForm(item){
 
     return(
         <div className="form-wrapper">
-        <Card  itemsPerRow={2} centered fluid  raised >
+        <Card  centered fluid  raised >
             <Card.Content>
             <Card.Header>Add new recipe</Card.Header>
                 <Divider/>

@@ -6,18 +6,26 @@ import RecipeBlock from './RecipesBlock';
 
 import './RecipeList.css';
 import * as actions from "../../actions";
-import store from "../../store";
 
 
 class RecipeList extends Component {
 
+    constructor(props) {
+        super(props)
+    }
 
+    render() {
 
-    render(){
-        return(
+        const {isFetching, allRecipes} = this.props;
+        var recipesList = allRecipes.map(item => {
+            
+        });
+
+            console.log(allRecipes);
+        return (
             <Card.Group itemsPerRow={2} className="recipe-list-wrapper">
                 {/*<RecipeBlock/>*/}
-                <RecipeBlock/>
+                <RecipeBlock recipe={allRecipes}/>
                 {/*<RecipeBlock/>*/}
             </Card.Group>
         )
@@ -26,13 +34,13 @@ class RecipeList extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log("Here is connect component");
-    return state;
+    return {
+        allRecipes: state.allRecipes
+    }
 };
 
-const mapDispatchToProps = dispatch   => {
+const mapDispatchToProps = dispatch => {
     dispatch(actions.getAllRecipes());
-    console.log(store.getState());
 };
 
 

@@ -3,7 +3,6 @@ import api from '../api'
 const reducer = (state = [], action) => {
     switch (action.type) {
         case 'GET_ALL': {
-            console.log('GET_ALL');
             return  state;
             // api.getAll((response)=> {
             //     state = response;
@@ -11,12 +10,8 @@ const reducer = (state = [], action) => {
 
         }
         case 'GET_ALL_SUCCESS': {
-            console.log('GET_ALL_SUCCESS');
             console.log(action.recipes);
-            return state=action.recipes;
-            // api.getAll((response)=> {
-            //       state = response;
-            // });
+            return state.allRecipes=action.recipes;
 
         }
         case 'GET_RECIPE_SUCCESS': {
