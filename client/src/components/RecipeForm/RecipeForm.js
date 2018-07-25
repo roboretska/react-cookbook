@@ -18,7 +18,10 @@ export default function RecipeForm(item){
         <Form>
             <Form.Input  label='Title' placeholder='Enter title...' />
             <Form.TextArea label='Description' placeholder='Add description...' />
+            <div>
             <ReturnButton/>
+            <SubmitButton/>
+            </div>
         </Form>
             </Card.Content>
         </Card>
@@ -28,11 +31,13 @@ export default function RecipeForm(item){
 }
 
 const ReturnButton = () => (
-    <Button.Group>
         <Link to='/'>
-            <Button content='Return' icon='arrow left'/>
+            <Button floated='left' content='Return' icon='arrow left'/>
         </Link>
-        <Button content='Submit' icon='arrow left'/>
-    </Button.Group>
 );
 
+const SubmitButton = () => (
+        <Link to='/'>
+            <Button  floated='right' content='Submit' positive/>
+        </Link>
+);

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Button, Card, Image, Icon} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
-import api from '../../api/apiList';
+import api from '../../api/index';
+
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -9,10 +10,11 @@ import './RecipeBlock.css'
 
 export default function RecipeContainer(item) {
 
+
+
     return (
 
         <Card fluid>
-            <Image src='/images/avatar/large/daniel.jpg'/>
             <Card.Content>
                 <Card.Header>Daniel</Card.Header>
                 <Card.Meta>

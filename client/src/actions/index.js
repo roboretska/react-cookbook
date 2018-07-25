@@ -1,15 +1,18 @@
-const getAllRecipes = () =>({
+export const getAllRecipes = () =>({
     type: 'GET_ALL_SUCCESS'
 });
 
-const getPecipeById = () =>({
-    type: 'GET_RECIPE_SUCCESS'
+export const getPecipeById = id =>({
+    type: 'GET_RECIPE_SUCCESS',
+    id: id
 });
 
-const addRecipe = () =>({
-    type: 'ADD_RECIPE_SUCCESS'
+export const addRecipe = data =>({
+    type: 'ADD_RECIPE_SUCCESS',
+    data: data
 });
 
-const deleteRecipe = () =>({
-    type: 'DELETE_RECIPE_SUCCESS'
+export const deleteRecipe = id =>({
+    type: 'DELETE_RECIPE_SUCCESS',
+    id: id
 });
