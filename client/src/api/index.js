@@ -1,10 +1,6 @@
 import axios from 'axios';
 import config from "../config/config";
 
-// export default axios({
-//     url: config.baseURL + '/api/recipes',
-//     method: "get"}
-// ).then()
 
 export default {
     getAll(){

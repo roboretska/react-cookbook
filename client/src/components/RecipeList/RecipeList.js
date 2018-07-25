@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Card} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 
-
 import RecipeBlock from './RecipesBlock';
 
 import './RecipeList.css';
@@ -26,13 +25,13 @@ class RecipeList extends Component {
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     console.log("Here is connect component");
     return state;
 };
 
-const mapDispatchToProps = (store) => {
-    store.dispatch(actions.getAllRecipes());
+const mapDispatchToProps = dispatch   => {
+    dispatch(actions.getAllRecipes());
     console.log(store.getState());
 };
 
