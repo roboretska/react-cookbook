@@ -1,5 +1,5 @@
 export const getAllRecipes = () =>({
-    type: 'GET_ALL_SUCCESS'
+    type: 'GET_ALL'
 });
 
 export const getPecipeById = id =>({

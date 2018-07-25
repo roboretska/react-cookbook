@@ -7,10 +7,7 @@ import config from "../config/config";
 // ).then()
 
 export default {
-    getAll(callback){
+    getAll(){
         return axios.get(`${config.baseURL}/api/recipes`)
-            .then(res=>{callback(res.data);
-            console.log(res.data)})
-            .catch(err=>console.log(err));
     }
 }

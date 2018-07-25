@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 import './App.css';
 import Head from './Head';
@@ -14,9 +14,11 @@ class App extends Component {
                 <Head/>
                 <BrowserRouter>
                     <Switch>
-                        <Route exact  path='/' component={RecipeList}/>
-                        <Route  path='/add' component={RecipeForm}/>
-                        <Route  path='/edit' component={RecipeForm}/>
+                        <Route exact  path='/' render={() =><Redirect to='/recipes'/>}/>
+                        <Route exact  path='/recipes' component={RecipeList}/>
+                        <Route  path='/recipes/add' component={RecipeForm}/>
+                        <Route  path='/:id/edit' component={RecipeForm}/>
+                        <Route  path='/:id' component={RecipeForm}/>
                     </Switch>
                 </BrowserRouter>
             </div>
