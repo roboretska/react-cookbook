@@ -1,27 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Button, Card, Image, Icon} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
-import api from '../../api/index';
-
 
 import 'semantic-ui-css/semantic.min.css';
 
 import './RecipeBlock.css'
 
+
 export default function RecipeContainer(item) {
 
 
-console.log(item);
-const recipe=item.item;
+    console.log(item);
+    const recipe=item.item;
     return (
 
         <Card fluid>
             <Card.Content>
-                <Card.Meta className='button-wrapper'>
-                    <Link to ='/recipe' onClick={api.getAll}><WatchButton/></Link>
-                    <Link to='/edit'><EditButton/></Link>
-                    <Link to='/delete'><DeleteButton/></Link>
-                </Card.Meta>
+                <ListButton recipe={recipe}/>
                 <Card.Header>{recipe.title}</Card.Header>
                 <Card.Description>{recipe.description}</Card.Description>
             </Card.Content>
@@ -32,16 +27,26 @@ const recipe=item.item;
     )
 }
 
-
 const DeleteButton = () => (
     <Button circular icon='trash' negative/>
 );
 
 const EditButton = () => (
-    <Button circular icon='pencil alternate'  />
+    <Button circular icon='pencil alternate'/>
 );
 
 const WatchButton = () => (
     <Button circular icon='eye'/>
 );
 
+const ListButton = (recipe) => (
+    <Card.Meta className='button-wrapper'>
+        {window.location.pathname === '/recipes' && <Link to={`/${recipe.recipe._id}`}><WatchButton/></Link>}
+        <Link to={`/${recipe.recipe._id}/edit`}><EditButton/></Link>
+        <Link to={`/${recipe.recipe._id}/delete`}><DeleteButton/></Link>
+    </Card.Meta>
+);
+
+function getRecipeById() {
+
+}

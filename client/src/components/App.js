@@ -10,6 +10,8 @@ import history from '../store/history';
 
 import RecipeList from './RecipeList/RecipeList';
 import RecipeForm from './RecipeForm/RecipeForm';
+import RecipeBlock from './RecipeList/RecipesBlock';
+
 
 const store = createStore();
 
@@ -26,7 +28,7 @@ class App extends Component {
                         <Route exact  path='/recipes' component={RecipeList}/>
                         <Route  path='/recipes/add' component={RecipeForm}/>
                         <Route  path='/:id/edit' component={RecipeForm}/>
-                        <Route  path='/:id' component={RecipeForm}/>
+                        <Route  path='/:id' recipe={{title: "aaa", description: "Aaa", createdAt:"now" }} component={RecipeBlock}/>
                     </Switch>
                 </ConnectedRouter>
             </Provider>

@@ -13,6 +13,8 @@ export default function* getAllRecipes(action){
 
     }
     catch (e) {
-
+        yield put({
+            type: 'GET_ALL_FAILED'
+        });
     }
 }
