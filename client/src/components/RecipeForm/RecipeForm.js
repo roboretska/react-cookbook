@@ -10,10 +10,17 @@ import './RecipeForm.css'
 export default class RecipeForm extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            title: '',
+            description:''
+        }
     }
 
+    handleChange = (e, { name, value }) => this.setState({ [name]: value });
+
     render() {
+        console.log(this.state);
         return (
             <div className="form-wrapper">
                 <Card centered fluid raised>
@@ -21,8 +28,16 @@ export default class RecipeForm extends Component {
                         <Card.Header>Add new recipe</Card.Header>
                         <Divider/>
                         <Form>
-                            <Form.Input label='Title' placeholder='Enter title...'/>
-                            <Form.TextArea label='Description' placeholder='Add description...'/>
+                            <Form.Input label='Title' placeholder='Enter title...'
+                                        name='title'
+                                        value={this.state.title}
+                                        onChange={this.handleChange}
+                            />
+                            <Form.TextArea label='Description' placeholder='Add description...'
+                                           name='description'
+                                           value={this.state.description}
+                                           onChange={this.handleChange}
+                            />
                             <div>
                                 <ReturnButton/>
                                 <SubmitButton/>
@@ -31,9 +46,10 @@ export default class RecipeForm extends Component {
                     </Card.Content>
                 </Card>
             </div>
+        )
     }
 
-)
+
 }
 
 const ReturnButton = () => (
