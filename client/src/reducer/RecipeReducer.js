@@ -11,10 +11,7 @@ const reducer = (state = [], action) => {
         case 'GET_ALL_SUCCESS': {
             console.log('GET_ALL_SUCCESS');
             return action.payload.all;
-            //
-            // return  [...state,
-            //     action.recipes
-            // ]
+
 
         }
         case 'GET_RECIPE_SUCCESS': {
@@ -22,6 +19,9 @@ const reducer = (state = [], action) => {
         }
         case 'ADD_RECIPE_SUCCESS': {
             return console.log('ADD_RECIPE_SUCCESS');
+        }
+        case 'EDIT_RECIPE_SUCCESS': {
+            return console.log('EDIT_RECIPE_SUCCESS');
         }
         case 'DELETE_RECIPE_SUCCESS': {
             return console.log('DELETE_RECIPE_SUCCESS');

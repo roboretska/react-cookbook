@@ -10,7 +10,6 @@ import './RecipeBlock.css'
 export default function RecipeContainer(item) {
 
 
-    console.log(item);
     const recipe=item.item;
     return (
 

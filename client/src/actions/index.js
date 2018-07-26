@@ -8,7 +8,12 @@ export const getPecipeById = id =>({
 });
 
 export const addRecipe = data =>({
-    type: 'ADD_RECIPE_SUCCESS',
+    type: 'ADD_RECIPE',
+    payload: data
+});
+
+export const editRecipe = data =>({
+    type: 'EDIT_RECIPE_SUCCESS',
     data: data
 });
 
@@ -16,3 +21,6 @@ export const deleteRecipe = id =>({
     type: 'DELETE_RECIPE_SUCCESS',
     id: id
 });
+
+
+

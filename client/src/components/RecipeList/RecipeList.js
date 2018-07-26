@@ -22,12 +22,10 @@ class RecipeList extends Component {
 
     getRecipesFromStore(){
         this.props.getAllRecipes();
-
     }
 
     createList(){
         const {allRecipes} = this.props;
-        console.log(allRecipes);
         return allRecipes.map(item =>
             <RecipeBlock item={item} key={item._id} />
         );
@@ -36,15 +34,9 @@ class RecipeList extends Component {
 
         render() {
 
-            const {allRecipes, test} = this.props;
-            console.log(allRecipes);
-
 
         return (
             <Card.Group itemsPerRow={2} className="recipe-list-wrapper">
-                {/*<RecipeBlock/>*/}
-                {/*<RecipeBlock recipe={allRecipes}/>*/}
-                {/*<RecipeBlock/>*/}
                 {this.createList()}
             </Card.Group>
         )
@@ -60,6 +52,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     getAllRecipes: bindActionCreators(actions.getAllRecipes, dispatch)
+
 });
 
 

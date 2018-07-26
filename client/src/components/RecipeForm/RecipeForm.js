@@ -6,18 +6,32 @@ import 'semantic-ui-css/semantic.min.css';
 
 import './RecipeForm.css'
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from "../../actions";
 
-export default class RecipeForm extends Component {
+
+class RecipeForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             title: '',
-            description:''
+            description: ''
         }
     }
 
-    handleChange = (e, { name, value }) => this.setState({ [name]: value });
+    handleChange = (e, {name, value}) => this.setState({[name]: value});
+
+
+
+    submitAction() {
+        const data = {
+            title: this.state.title,
+            description: this.state.description
+        };
+        console.log(data);
+    }
 
     render() {
         console.log(this.state);
@@ -32,6 +46,7 @@ export default class RecipeForm extends Component {
                                         name='title'
                                         value={this.state.title}
                                         onChange={this.handleChange}
+                                        autoComplete="off"
                             />
                             <Form.TextArea label='Description' placeholder='Add description...'
                                            name='description'
@@ -39,8 +54,12 @@ export default class RecipeForm extends Component {
                                            onChange={this.handleChange}
                             />
                             <div>
-                                <ReturnButton/>
-                                <SubmitButton/>
+                                <Link to='/'>
+                                    <Button floated='left' content='Return' icon='arrow left'/>
+                                </Link>
+                                <Link to='/'>
+                                    <Button floated='right' onClick={this.submitAction.bind(this)} content='Submit' positive/>
+                                </Link>
                             </div>
                         </Form>
                     </Card.Content>
@@ -52,14 +71,18 @@ export default class RecipeForm extends Component {
 
 }
 
-const ReturnButton = () => (
-    <Link to='/'>
-        <Button floated='left' content='Return' icon='arrow left'/>
-    </Link>
-);
 
-const SubmitButton = () => (
-    <Link to='/'>
-        <Button floated='right' content='Submit' positive/>
-    </Link>
-);
+
+
+const mapStateToProps = state => {
+    return {
+        allRecipes: state.recipes,
+    }
+};
+
+const mapDispatchToProps = dispatch => ({
+    addRecipe: bindActionCreators(actions.addRecipe, dispatch)
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeForm)
