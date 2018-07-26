@@ -11,24 +11,22 @@ import './RecipeBlock.css'
 export default function RecipeContainer(item) {
 
 
-
+console.log(item);
+const recipe=item.item;
     return (
 
         <Card fluid>
             <Card.Content>
-                <Card.Header>Daniel</Card.Header>
-                <Card.Meta>
+                <Card.Meta className='button-wrapper'>
                     <Link to ='/recipe' onClick={api.getAll}><WatchButton/></Link>
                     <Link to='/edit'><EditButton/></Link>
                     <Link to='/delete'><DeleteButton/></Link>
                 </Card.Meta>
-                <Card.Description>Daniel is a comedian living in Nashville.</Card.Description>
+                <Card.Header>{recipe.title}</Card.Header>
+                <Card.Description>{recipe.description}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <a>
-                    <Icon name='user'/>
-                    10 Friends
-                </a>
+                {recipe.createdAt}
             </Card.Content>
         </Card>
     )

@@ -6,7 +6,9 @@ export default function* getAllRecipes(action){
         const recipes = yield call(api.getAll);
         yield put({
             type: 'GET_ALL_SUCCESS',
-            recipes : recipes.data
+            payload : {
+                all: recipes.data
+            }
         });
 
     }

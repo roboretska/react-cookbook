@@ -1,4 +1,7 @@
-/*.recipe-card{*/
-    /*margin: 15px;*/
-    /*border: 1px solid rgb(45, 45, 30);*/
-/*}*/
+.button-wrapper{
+    margin: 0 5px 15px 5px;
+}
+
+.button-wrapper button{
+    float: right;
+}
