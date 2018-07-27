@@ -89,7 +89,8 @@ class RecipeForm extends Component {
                                     {
                                         this.getIdFromPathName()!=='recipes'?
                                     <Button floated='right'  onClick={this.editRecipe.bind(this)} content='Save' positive/> :
-                                    <Button floated='right' onClick={this.submitAction.bind(this)} content='Submit' positive/>
+                                    <Button floated='right' onClick={this.submitAction.bind(this)} content='Submit' positive
+                                            disabled={!(this.state.title &&this.state.description)}/>
                                     }
                                 </Link>
                             </div>
