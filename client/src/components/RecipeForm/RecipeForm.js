@@ -32,6 +32,7 @@ class RecipeForm extends Component {
             description: this.state.description,
             createdAt: new Date()
         };
+        console.log(typeof  this.props.actions);
         this.props.actions(data);
     }
 
@@ -119,4 +120,11 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
+RecipeForm.propTypes={
+    storageState: PropTypes.array,
+};
+
+RecipeForm.defaultProps={
+    storageState: [],
+};
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeForm)

@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 
 import './RecipeBlock.css'
+import PropTypes from 'prop-types';
 
 
 
@@ -57,3 +58,19 @@ function deleteRecipeClick(id, func) {
 
 }
 
+RecipeContainer.propTypes={
+    item: PropTypes.object
+};
+
+RecipeContainer.defaultProps={
+    item: {}
+};
+
+ListButton.propTypes={
+    recipe: PropTypes.object,
+    deleteFunc: PropTypes.function
+};
+
+ListButton.defaultProps={
+    recipe: {}
+};

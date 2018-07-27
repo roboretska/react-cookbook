@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Card} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import RecipeBlock from './RecipesBlock';
 
@@ -56,4 +57,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
+
+RecipeList.propTypes={
+    allRecipes: PropTypes.array
+};
+
+RecipeList.defaultProps={
+    allRecipes: []
+};
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeList)

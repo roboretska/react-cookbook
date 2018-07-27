@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import '../RecipeForm/RecipeForm.css'
 import './CardView.css';
 import * as actions from "../../actions";
+import PropTypes from 'prop-types';
 
 
 class RecipeContainer extends Component{
@@ -67,5 +68,13 @@ const mapDispatchToProps = dispatch => ({
 
     });
 
+
+RecipeContainer.propTypes={
+    recipe: PropTypes.array
+};
+
+RecipeContainer.defaultProps={
+    recipe: []
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeContainer)
