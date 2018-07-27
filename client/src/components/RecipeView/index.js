@@ -3,56 +3,69 @@ import {Button, Card, Image, Icon} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import '../RecipeList/RecipeBlock.css'
+import '../RecipeForm/RecipeForm.css'
+import './CardView.css';
+import * as actions from "../../actions";
 
 
+class RecipeContainer extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            recipe: ""
+        }
+    }
+    getIdFromPathName(){
+        const[, id,] = window.location.pathname.split('/');
+        return id;
+    };
+
+    componentWillMount() {
+        const [element] = this.props.recipe.filter(item => item._id===this.getIdFromPathName());
 
 
-export default function RecipeContainer(props) {
+        console.log(element);
 
+        this.setState({
+            recipe: element
+        });
+    }
 
-    const recipe=props.item;
-    const deleteFunc=props.deleteFunc;
+    render() {
+        return (
+            <div className='form-wrapper card-view'>
+                <Card fluid>
+                    <Card.Content header={this.state.recipe.title}
+                                  meta={this.state.recipe.createdAt}/>
+                    <Card.Content>
+                        <Card.Description>{this.state.recipe.description}</Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
 
-    return (
-
-        <Card fluid>
-            <Card.Content>
-                {/*<ListButton />*/}
-                <Card.Header>Hi</Card.Header>
-                <Card.Description>Test</Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-                Test
-            </Card.Content>
-        </Card>
-    )
+                        <Link to='/'>
+                            <Button floated='left' content='Return' icon='arrow left'/>
+                        </Link>
+                    </Card.Content>
+                </Card>
+            </div>
+        )
+    }
 }
 
-// const DeleteButton = (props) => (
-//     <Button circular icon='trash' negative onClick={()=>{props.onClickFunction(props.id, props.deleteFunc)}}/>
-// );
-//
-// const EditButton = () => (
-//     <Button circular icon='pencil alternate'/>
-// );
-//
-// const WatchButton = () => (
-//     <Button circular icon='eye'/>
-// );
-//
-// const ListButton = (props) => (
-//     <Card.Meta className='button-wrapper'>
-//         {window.location.pathname === '/recipes' && <Link to={`/${props.recipe._id}`}><WatchButton/></Link>}
-//         <Link to={`/${props.recipe._id}/edit`}><EditButton/></Link>
-//         <DeleteButton onClickFunction={deleteRecipeClick} id={props.recipe._id} deleteFunc={props.deleteFunc}/>
-//     </Card.Meta>
-// );
-//
-// function deleteRecipeClick(id, func) {
-//     console.log(id);
-//     console.log(func);
-//     func(id);
-//
-// }
+const mapStateToProps = state => {
+        return {
+            recipe: state.recipes,
+        }
+    };
+
+const mapDispatchToProps = dispatch => ({
+        getRecipeById: bindActionCreators(actions.getRecipeById, dispatch),
+
+    });
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeContainer)

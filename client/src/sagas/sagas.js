@@ -66,7 +66,7 @@ export function* getRecipeById(action) {
         yield put({
             type: 'GET_RECIPE_SUCCESS',
             payload: {
-                recipes: recipes.data,
+                recipe: recipes.data,
                 prevState: prevState
             }
         });

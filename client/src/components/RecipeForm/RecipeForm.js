@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Form, Button, Card, Divider} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -87,7 +88,7 @@ class RecipeForm extends Component {
                                 <Link to='/'>
                                     {
                                         this.getIdFromPathName()!=='recipes'?
-                                    <Button floated='right'  onClick={this.editRecipe.bind(this)} content='AAA' positive/> :
+                                    <Button floated='right'  onClick={this.editRecipe.bind(this)} content='Save' positive/> :
                                     <Button floated='right' onClick={this.submitAction.bind(this)} content='Submit' positive/>
                                     }
                                 </Link>
@@ -113,7 +114,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actions.addRecipe, dispatch),
-    getRecipeById: bindActionCreators(actions.getRecipeById, dispatch),
     editRecipe: bindActionCreators(actions.editRecipe, dispatch)
 
 });

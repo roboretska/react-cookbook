@@ -16,7 +16,7 @@ const reducer = (state = [], action) => {
         }
         case 'GET_RECIPE_SUCCESS': {
             console.log('GET_RECIPE_SUCCESS');
-            return action.payload.recipes
+            return action.payload.recipe
 
         }
         case 'ADD_RECIPE_SUCCESS': {
