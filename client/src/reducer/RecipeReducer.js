@@ -28,6 +28,10 @@ const reducer = (state = [], action) => {
         case 'EDIT_RECIPE_SUCCESS': {
             console.log(action.payload.prevState);
             console.log(action.payload.editedRecipe);
+            console.log(action.payload.editedRecipeId);
+            const index = action.payload.prevState.findIndex(i => i._id ===action.payload.editedRecipeId);
+            action.payload.prevState.splice(index,1,action.payload.editedRecipe);
+            return action.payload.prevState;
 
             return state;
         }
