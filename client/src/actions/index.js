@@ -12,13 +12,14 @@ export const addRecipe = data =>({
     payload: data
 });
 
-export const editRecipe = data =>({
+export const editRecipe = (id, data) =>({
     type: 'EDIT_RECIPE_SUCCESS',
+    id: id,
     data: data
 });
 
 export const deleteRecipe = id =>({
-    type: 'DELETE_RECIPE_SUCCESS',
+    type: 'DELETE_RECIPE',
     id: id
 });
 

@@ -7,15 +7,19 @@ import 'semantic-ui-css/semantic.min.css';
 import './RecipeBlock.css'
 
 
-export default function RecipeContainer(item) {
 
 
-    const recipe=item.item;
+export default function RecipeContainer(props) {
+
+
+    const recipe=props.item;
+    const deleteFunc=props.deleteFunc;
+
     return (
 
         <Card fluid>
             <Card.Content>
-                <ListButton recipe={recipe}/>
+                <ListButton recipe={recipe} deleteFunc={props.deleteFunc}/>
                 <Card.Header>{recipe.title}</Card.Header>
                 <Card.Description>{recipe.description}</Card.Description>
             </Card.Content>
@@ -26,8 +30,8 @@ export default function RecipeContainer(item) {
     )
 }
 
-const DeleteButton = () => (
-    <Button circular icon='trash' negative/>
+const DeleteButton = (props) => (
+    <Button circular icon='trash' negative onClick={()=>{props.onClickFunction(props.id, props.deleteFunc)}}/>
 );
 
 const EditButton = () => (
@@ -38,14 +42,18 @@ const WatchButton = () => (
     <Button circular icon='eye'/>
 );
 
-const ListButton = (recipe) => (
+const ListButton = (props) => (
     <Card.Meta className='button-wrapper'>
-        {window.location.pathname === '/recipes' && <Link to={`/${recipe.recipe._id}`}><WatchButton/></Link>}
-        <Link to={`/${recipe.recipe._id}/edit`}><EditButton/></Link>
-        <Link to={`/${recipe.recipe._id}/delete`}><DeleteButton/></Link>
+        {window.location.pathname === '/recipes' && <Link to={`/${props.recipe._id}`}><WatchButton/></Link>}
+        <Link to={`/${props.recipe._id}/edit`}><EditButton/></Link>
+        <DeleteButton onClickFunction={deleteRecipeClick} id={props.recipe._id} deleteFunc={props.deleteFunc}/>
     </Card.Meta>
 );
 
-function getRecipeById() {
+function deleteRecipeClick(id, func) {
+    console.log(id);
+    console.log(func);
+    func(id);
 
 }
+

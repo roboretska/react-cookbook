@@ -13,7 +13,6 @@ recipe.route('/')
 			});
 	})
 	.post((req, res) => {
-		console.log(req.body);
 		recipeService.addRecipe(req.body)
 			.then(recipe => {
 				res.send(recipe);

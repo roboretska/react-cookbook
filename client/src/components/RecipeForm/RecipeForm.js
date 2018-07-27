@@ -30,7 +30,7 @@ class RecipeForm extends Component {
             title: this.state.title,
             description: this.state.description
         };
-        console.log(data);
+        this.props.actions(data);
     }
 
     render() {
@@ -81,7 +81,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    addRecipe: bindActionCreators(actions.addRecipe, dispatch)
+    actions: bindActionCreators(actions.addRecipe, dispatch)
 
 });
 

@@ -8,7 +8,6 @@ import RecipeBlock from './RecipesBlock';
 import './RecipeList.css';
 import * as actions from "../../actions";
 
-
 class RecipeList extends Component {
 
     constructor(props) {
@@ -27,7 +26,7 @@ class RecipeList extends Component {
     createList(){
         const {allRecipes} = this.props;
         return allRecipes.map(item =>
-            <RecipeBlock item={item} key={item._id} />
+            <RecipeBlock item={item} key={item._id} deleteFunc={ this.props.deleteRecipe} />
         );
     }
 
@@ -51,7 +50,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    getAllRecipes: bindActionCreators(actions.getAllRecipes, dispatch)
+    getAllRecipes: bindActionCreators(actions.getAllRecipes, dispatch),
+    deleteRecipe :  bindActionCreators(actions.deleteRecipe, dispatch)
 
 });
 

@@ -30,7 +30,7 @@ class Repository {
 	}
 
 	add(data) {
-		return this.model.create({date});
+		return this.model.create(data);
 	}
 
 	update(queryObj, obj) {

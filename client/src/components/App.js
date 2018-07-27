@@ -10,7 +10,7 @@ import history from '../store/history';
 
 import RecipeList from './RecipeList/RecipeList';
 import RecipeForm from './RecipeForm/RecipeForm';
-import RecipeBlock from './RecipeList/RecipesBlock';
+import RecipeView from './RecipeView';
 import {Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
 
@@ -26,14 +26,15 @@ class App extends Component {
 
                     <React.Fragment>
                         <Head/>
-                        <Link to='/recipes/add'><Button fluid>Fits to Container</Button></Link>
+                        <Link to='/recipes/add'><Button fluid content='Add new recipe' icon='add'
+                                                         color='yellow'/></Link>
                         <Switch>
                             <Route exact path='/' render={() => <Redirect to='/recipes'/>}/>
                             <Route exact path='/recipes' component={RecipeList}/>
                             <Route path='/recipes/add' component={RecipeForm}/>
                             <Route path='/:id/edit' component={RecipeForm}/>
                             <Route path='/:id' recipe={{title: "aaa", description: "Aaa", createdAt: "now"}}
-                                   component={RecipeBlock}/>
+                                   component={RecipeView}/>
                         </Switch>
                     </React.Fragment>
                 </ConnectedRouter>

@@ -1,12 +1,12 @@
-import {call, put} from 'redux-saga/effects'
+import {call, put, select} from 'redux-saga/effects'
 import api from '../api'
 
-export  function* getAllRecipes(action){
-    try{
+export function* getAllRecipes(action) {
+    try {
         const recipes = yield call(api.getAll);
         yield put({
             type: 'GET_ALL_SUCCESS',
-            payload : {
+            payload: {
                 all: recipes.data
             }
         });
@@ -19,13 +19,35 @@ export  function* getAllRecipes(action){
     }
 }
 
-export  function* addRecipe(action){
-    try{
-        const recipes = yield call(api.getAll, action.payload);
+export function* addRecipe(action) {
+    try {
+        const prevState = yield select(state => state.recipes);
+        const recipes = yield call(api.createNewRecipe, action.payload);
         yield put({
             type: 'ADD_RECIPE_SUCCESS',
-            payload : {
-                all: recipes.data
+            payload: {
+                newRecipe: recipes.data,
+                prevState: prevState
+            }
+        });
+
+    }
+    catch (e) {
+        yield put({
+            type: 'ADD_RECIPE_FAILED'
+        });
+    }
+}
+
+export function* deleteRecipe(action) {
+    try {
+        const prevState = yield select(state => state.recipes);
+        const recipes = yield call(api.deleteRecipe, action.id);
+        yield put({
+            type: 'DELETE_RECIPE_SUCCESS',
+            payload: {
+                deletedRecipe: action.id,
+                prevState: prevState
             }
         });
 

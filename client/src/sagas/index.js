@@ -5,6 +5,7 @@ import * as saga from './sagas'
 export function* rootSaga(){
     yield all([
         takeLatest("GET_ALL", saga.getAllRecipes),
-        takeLatest("ADD_RECIPE", saga.addRecipe)
+        takeLatest("ADD_RECIPE", saga.addRecipe),
+        takeLatest("DELETE_RECIPE", saga.deleteRecipe)
     ]);
 }
