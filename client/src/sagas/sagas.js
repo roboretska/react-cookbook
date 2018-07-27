@@ -58,3 +58,44 @@ export function* deleteRecipe(action) {
         });
     }
 }
+
+export function* getRecipeById(action) {
+    try {
+        const prevState = yield select(state => state.recipes);
+        const recipes = yield call(api.getRecipeById, action.id);
+        yield put({
+            type: 'GET_RECIPE_SUCCESS',
+            payload: {
+                recipes: recipes.data,
+                prevState: prevState
+            }
+        });
+
+    }
+    catch (e) {
+        yield put({
+            type: 'ADD_RECIPE_FAILED'
+        });
+    }
+}
+
+export function* editRecipe(action) {
+    try {
+        const prevState = yield select(state => state.recipes);
+        const recipes = yield call(api.getRecipeById, action.id);
+        yield put({
+            type: 'DELETE_RECIPE_SUCCESS',
+            payload: {
+                recipes: recipes,
+                deletedRecipe: action.id,
+                prevState: prevState
+            }
+        });
+
+    }
+    catch (e) {
+        yield put({
+            type: 'ADD_RECIPE_FAILED'
+        });
+    }
+}

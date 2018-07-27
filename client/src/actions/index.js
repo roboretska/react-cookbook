@@ -2,8 +2,8 @@ export const getAllRecipes = () =>({
     type: 'GET_ALL'
 });
 
-export const getPecipeById = id =>({
-    type: 'GET_RECIPE_SUCCESS',
+export const getRecipeById = id =>({
+    type: 'GET_RECIPE',
     id: id
 });
 
@@ -13,7 +13,7 @@ export const addRecipe = data =>({
 });
 
 export const editRecipe = (id, data) =>({
-    type: 'EDIT_RECIPE_SUCCESS',
+    type: 'EDIT_RECIPE',
     id: id,
     data: data
 });
@@ -22,6 +22,7 @@ export const deleteRecipe = id =>({
     type: 'DELETE_RECIPE',
     id: id
 });
+
 
 
 

@@ -33,13 +33,31 @@ class RecipeForm extends Component {
         this.props.actions(data);
     }
 
+    getIdFromPathName(){
+        const[, id,] = window.location.pathname.split('/');
+        return id;
+    };
+
+    componentWillMount(){
+        if(this.getIdFromPathName()!=='recipes'){
+            const [element] = this.props.storageState.filter(item => item._id===this.getIdFromPathName());
+            this.setState({
+                title: element.title,
+                description: element.description,
+                isEditing: true
+            });
+            console.log(element);
+        }
+    }
+
+
+
     render() {
-        console.log(this.state);
         return (
             <div className="form-wrapper">
                 <Card centered fluid raised>
                     <Card.Content>
-                        <Card.Header>Add new recipe</Card.Header>
+                        <Card.Header>{this.getIdFromPathName()!=='recipes'?'Edit recipe':'Add new recipe'}</Card.Header>
                         <Divider/>
                         <Form>
                             <Form.Input label='Title' placeholder='Enter title...'
@@ -76,12 +94,14 @@ class RecipeForm extends Component {
 
 const mapStateToProps = state => {
     return {
-        allRecipes: state.recipes,
+        storageState: state.recipes
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions.addRecipe, dispatch)
+    actions: bindActionCreators(actions.addRecipe, dispatch),
+    getRecipeById: bindActionCreators(actions.getRecipeById, dispatch),
+    editRecipe: bindActionCreators(actions.editRecipe, dispatch)
 
 });
 
