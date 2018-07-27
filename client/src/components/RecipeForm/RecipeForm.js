@@ -28,7 +28,8 @@ class RecipeForm extends Component {
     submitAction() {
         const data = {
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            createdAt: new Date()
         };
         this.props.actions(data);
     }
@@ -50,7 +51,15 @@ class RecipeForm extends Component {
         }
     }
 
-
+    editRecipe() {
+        const data = {
+            title: this.state.title,
+            description: this.state.description,
+            updatedAt: new Date()
+        };
+        console.log('function working');
+        this.props.editRecipe(this.getIdFromPathName(), data);
+    }
 
     render() {
         return (
@@ -76,7 +85,11 @@ class RecipeForm extends Component {
                                     <Button floated='left' content='Return' icon='arrow left'/>
                                 </Link>
                                 <Link to='/'>
+                                    {
+                                        this.getIdFromPathName()!=='recipes'?
+                                    <Button floated='right'  onClick={this.editRecipe.bind(this)} content='AAA' positive/> :
                                     <Button floated='right' onClick={this.submitAction.bind(this)} content='Submit' positive/>
+                                    }
                                 </Link>
                             </div>
                         </Form>

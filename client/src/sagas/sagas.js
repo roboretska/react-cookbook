@@ -82,12 +82,11 @@ export function* getRecipeById(action) {
 export function* editRecipe(action) {
     try {
         const prevState = yield select(state => state.recipes);
-        const recipes = yield call(api.getRecipeById, action.id);
+        const recipes = yield call(api.editRecipe, action.id, action.data);
         yield put({
-            type: 'DELETE_RECIPE_SUCCESS',
+            type: 'EDIT_RECIPE_SUCCESS',
             payload: {
-                recipes: recipes,
-                deletedRecipe: action.id,
+                editedRecipe: recipes.data,
                 prevState: prevState
             }
         });

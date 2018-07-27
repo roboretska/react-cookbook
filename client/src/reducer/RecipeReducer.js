@@ -16,16 +16,20 @@ const reducer = (state = [], action) => {
         }
         case 'GET_RECIPE_SUCCESS': {
             console.log('GET_RECIPE_SUCCESS');
-            return console.log(action.payload.recipes);
+            return action.payload.recipes
 
         }
         case 'ADD_RECIPE_SUCCESS': {
              console.log('ADD_RECIPE_SUCCESS');
+
             action.payload.prevState.push(action.payload.newRecipe);
             return action.payload.prevState;
         }
         case 'EDIT_RECIPE_SUCCESS': {
-            return console.log('EDIT_RECIPE_SUCCESS');
+            console.log(action.payload.prevState);
+            console.log(action.payload.editedRecipe);
+
+            return state;
         }
         case 'DELETE_RECIPE_SUCCESS': {
              console.log('DELETE_RECIPE_SUCCESS');
