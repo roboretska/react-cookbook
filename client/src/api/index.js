@@ -17,5 +17,9 @@ export default {
     },
     editRecipe(id, data){
         return axios.patch(`${config.baseURL}/api/recipes/${id}`, data)
+    },
+    saveRating(id, data){
+        console.log(data);
+        return axios.patch(`${config.baseURL}/api/recipes/${id}/rating`, data)
     }
 }

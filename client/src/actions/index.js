@@ -29,5 +29,10 @@ export const filterRecipes = keyword =>({
     keyword: keyword
 });
 
+export const saveRating = (id, rate) =>({
+    type: 'SAVE_RATING',
+    id: id,
+    rating: rate
+});
 
 

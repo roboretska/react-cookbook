@@ -46,6 +46,10 @@ const reducer = (state = [], action) => {
             console.log(result);
             return result;
         }
+        case 'SAVE_RATING_SUCCESS':{
+            console.log('Save rating');
+            return state;
+        }
         default: {
             return state;
         }

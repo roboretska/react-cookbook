@@ -10,28 +10,43 @@ import PropTypes from 'prop-types';
 
 
 
-export default function RecipeContainer(props) {
+export default class RecipeContainer extends Component{
 
 
-    const recipe=props.item;
-    const deleteFunc=props.deleteFunc;
+    constructor(props){
+        super(props);
+        this.state = {
+            rating: this.props.item.rate || 0
+        }
+    }
 
-    return (
+    handleRate = (e, { rating, maxRating }) => {
+        this.setState({ rating, maxRating });
+        this.props.saveRating(this.props.item._id, rating);
+    };
 
-        <Card fluid>
-            <Card.Content>
-                <ListButton recipe={recipe} deleteFunc={props.deleteFunc}/>
-                <Card.Header>{recipe.title}</Card.Header>
-                <Card.Description>{recipe.description}</Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-                <div>
-                    <Rating icon='star' defaultRating={3} maxRating={5}/>
-                </div>
-                {recipe.createdAt}
-            </Card.Content>
-        </Card>
-    )
+    render() {
+
+        const  recipe = this.props.item;
+        console.log(recipe);
+        return (
+
+            <Card fluid>
+                <Card.Content>
+                    <ListButton recipe={recipe} deleteFunc={this.props.deleteFunc}/>
+                    <Card.Header>{recipe.title}</Card.Header>
+                    <Card.Description>{recipe.description}</Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                    <div>
+                        <Rating icon='star' defaultRating={recipe.rating} maxRating={5}
+                                onRate={this.handleRate}  disabled={this.state.rating}/>
+                    </div>
+                    {recipe.createdAt}
+                </Card.Content>
+            </Card>
+        )
+    }
 }
 
 const DeleteButton = (props) => (
@@ -71,7 +86,6 @@ RecipeContainer.defaultProps={
 
 ListButton.propTypes={
     recipe: PropTypes.object,
-    deleteFunc: PropTypes.function
 };
 
 ListButton.defaultProps={

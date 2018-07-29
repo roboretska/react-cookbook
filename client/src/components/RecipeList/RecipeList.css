@@ -2,9 +2,17 @@
     padding: 30px 25px;
 }
 
-.search-box-container{
+.nav-container{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 25px 0;
+}
+
+.search-box-container{
+    margin-right: 25px;
+}
+
+.checkbox-container{
+    margin: 0 10px 0 40px;
 }

@@ -8,7 +8,7 @@ export function* rootSaga(){
         takeLatest("ADD_RECIPE", saga.addRecipe),
         takeLatest("DELETE_RECIPE", saga.deleteRecipe),
         takeLatest("GET_RECIPE", saga.getRecipeById),
-        takeLatest("EDIT_RECIPE", saga.editRecipe)
-
+        takeLatest("EDIT_RECIPE", saga.editRecipe),
+        takeLatest("SAVE_RATING", saga.saveRating)
     ]);
 }

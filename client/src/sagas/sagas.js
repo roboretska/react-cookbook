@@ -101,3 +101,21 @@ export function* editRecipe(action) {
         });
     }
 }
+
+export function* saveRating(action) {
+    try {
+        console.log("Hi from saga");
+        const body= {'rating': action.rating};
+        yield call(api.saveRating, action.id, body);
+
+        yield put({
+            type: 'SAVE_RATING_SUCCESS',
+        });
+
+    }
+    catch (e) {
+        yield put({
+            type: 'ADD_RECIPE_FAILED'
+        });
+    }
+}
