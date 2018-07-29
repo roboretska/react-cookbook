@@ -76,7 +76,7 @@ class RecipeList extends Component {
                             onSearchChange={this.handleSearchValueChange}/>
                     </span>
                     <span className='checkbox-container'>
-                        <Checkbox  label='Sort by rate'
+                        <Checkbox  slider label='Sort by rate'
                                    checked={this.state.checked}
                                    onChange={this.sortRecipes.bind(this)}/>
                                    {/*<input type='checkbox' checked={this.state.checked}*/}
