@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Card, Image, Icon} from 'semantic-ui-react';
+import {Button, Card, Rating} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
@@ -25,6 +25,9 @@ export default function RecipeContainer(props) {
                 <Card.Description>{recipe.description}</Card.Description>
             </Card.Content>
             <Card.Content extra>
+                <div>
+                    <Rating icon='star' defaultRating={3} maxRating={5}/>
+                </div>
                 {recipe.createdAt}
             </Card.Content>
         </Card>
