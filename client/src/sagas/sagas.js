@@ -109,7 +109,43 @@ export function* saveRating(action) {
         yield call(api.saveRating, action.id, body);
 
         yield put({
-            type: 'SAVE_RATING_SUCCESS',
+            type: 'SAVE_RATING_SUCCESS'
+        });
+
+    }
+    catch (e) {
+        yield put({
+            type: 'ADD_RECIPE_FAILED'
+        });
+    }
+}
+
+export function* filerRecipes(action) {
+    try {
+        console.log('Sort by rating');
+        const result = yield call(api.getAll);
+        console.log(result);
+        yield put({
+            type: 'FILTER_RECIPES_SUCCESS',
+            all: result.data,
+            keyword: action.keyword
+        });
+
+    }
+    catch (e) {
+        yield put({
+            type: 'ADD_RECIPE_FAILED'
+        });
+    }
+}
+
+export function* sortByRating() {
+    try {
+        console.log('Sort by rating');
+        const result = yield call(api.getAll);
+        yield put({
+            type: 'SORT_BY_RATING_SUCCESS',
+            all: result.data
         });
 
     }

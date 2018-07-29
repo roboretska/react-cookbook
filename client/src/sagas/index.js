@@ -9,6 +9,9 @@ export function* rootSaga(){
         takeLatest("DELETE_RECIPE", saga.deleteRecipe),
         takeLatest("GET_RECIPE", saga.getRecipeById),
         takeLatest("EDIT_RECIPE", saga.editRecipe),
-        takeLatest("SAVE_RATING", saga.saveRating)
+        takeLatest("SAVE_RATING", saga.saveRating),
+        takeLatest("SORT_BY_RATING", saga.sortByRating),
+        takeLatest("FILTER_RECIPES", saga.filerRecipes)
+
     ]);
 }

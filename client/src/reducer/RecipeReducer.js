@@ -35,11 +35,10 @@ const reducer = (state = [], action) => {
              console.log('DELETE_RECIPE_SUCCESS');
             return action.payload.prevState.filter(item => item._id!==action.payload.deletedRecipe);
         }
-        case 'FILTER_RECIPES':{
+        case 'FILTER_RECIPES_SUCCESS':{
             console.log('Filtering posts');
             console.log(action.keyword);
-            const posts = state;
-            const result = posts.filter(item =>
+            const result = action.all.filter(item =>
                 // console.log(item)
                 item.title.search( new RegExp(action.keyword))!==-1
             );
@@ -49,6 +48,12 @@ const reducer = (state = [], action) => {
         case 'SAVE_RATING_SUCCESS':{
             console.log('Save rating');
             return state;
+        }
+        case 'SORT_BY_RATING_SUCCESS':{
+            const result = action.all.sort((a, b)=>{
+               return  a.rating<b.rating
+            });
+            return result;
         }
         default: {
             return state;

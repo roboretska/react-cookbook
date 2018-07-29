@@ -35,4 +35,6 @@ export const saveRating = (id, rate) =>({
     rating: rate
 });
 
-
+export const sortByRating = () =>({
+    type: 'SORT_BY_RATING',
+});

@@ -28,7 +28,6 @@ export default class RecipeContainer extends Component{
     render() {
 
         const  recipe = this.props.item;
-        console.log(recipe);
         return (
 
             <Card fluid>
@@ -70,8 +69,6 @@ const ListButton = (props) => (
 );
 
 function deleteRecipeClick(id, func) {
-    console.log(id);
-    console.log(func);
     func(id);
 
 }

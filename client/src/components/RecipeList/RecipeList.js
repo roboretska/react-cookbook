@@ -15,7 +15,8 @@ class RecipeList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchKeyword: ''
+            searchKeyword: '',
+            checked: true
         }
     }
 
@@ -50,30 +51,37 @@ class RecipeList extends Component {
         }
     }
 
-    sortRecipes(event){
-        if(event.target.selected){
-            console.log('im checked')
+    sortRecipes() {
+        console.log("********************");
+
+        console.log(this.state);
+        this.setState({checked: !this.state.checked});
+        console.log(this.state);
+        if (this.state.checked===true) {
+            this.props.sortByRating();
+        }else{
+            this.props.getAllRecipes();
         }
     }
 
-    render() {
-
-
+    render(){
+        console.log(this.state)
         return (
             <div>
-                <Link to='/recipes/add'><Button fluid content='Add new recipe' icon='add'
+                <Link to='/recipes/add'>
+                    <Button fluid content='Add new recipe' icon='add'
                                                 color='yellow'/>
                 </Link>
 
                 <div className='nav-container'>
-                    <span className=''>
+                    <span>
                     <Search showNoResults={false} value={this.state.searchKeyword}
                             onSearchChange={this.handleSearchValueChange}/>
                     </span>
                     <span className='checkbox-container'>
-                        <Checkbox slider label={{ children: 'Sort by rate' }}
-                            onChange={this.sortRecipes}
-    />
+                        <Checkbox  label='Sort by rate'
+                                   checked={this.state.checked}
+                                   onChange={this.sortRecipes.bind(this)}/>
                     </span>
                 </div>
                 <Card.Group itemsPerRow={2} className="recipe-list-wrapper">
@@ -95,7 +103,8 @@ const mapDispatchToProps = dispatch => ({
     getAllRecipes: bindActionCreators(actions.getAllRecipes, dispatch),
     deleteRecipe: bindActionCreators(actions.deleteRecipe, dispatch),
     filterRecipes: bindActionCreators(actions.filterRecipes, dispatch),
-    saveRating: bindActionCreators(actions.saveRating, dispatch)
+    saveRating: bindActionCreators(actions.saveRating, dispatch),
+    sortByRating : bindActionCreators(actions.sortByRating, dispatch)
 
 });
 
