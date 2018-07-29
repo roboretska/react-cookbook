@@ -26,8 +26,8 @@ class App extends Component {
 
                     <React.Fragment>
                         <Head/>
-                        <Link to='/recipes/add'><Button fluid content='Add new recipe' icon='add'
-                                                         color='yellow'/></Link>
+                        {/*<Link to='/recipes/add'><Button fluid content='Add new recipe' icon='add'*/}
+                                                         {/*color='yellow'/></Link>*/}
                         <Switch>
                             <Route exact path='/' render={() => <Redirect to='/recipes'/>}/>
                             <Route exact path='/recipes' component={RecipeList}/>

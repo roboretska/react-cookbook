@@ -24,5 +24,10 @@ export const deleteRecipe = id =>({
 });
 
 
+export const filterRecipes = keyword =>({
+    type: 'FILTER_RECIPES',
+    keyword: keyword
+});
+
 
 

@@ -21,14 +21,10 @@ const reducer = (state = [], action) => {
         }
         case 'ADD_RECIPE_SUCCESS': {
              console.log('ADD_RECIPE_SUCCESS');
-
             action.payload.prevState.push(action.payload.newRecipe);
             return action.payload.prevState;
         }
         case 'EDIT_RECIPE_SUCCESS': {
-            console.log(action.payload.prevState);
-            console.log(action.payload.editedRecipe);
-            console.log(action.payload.editedRecipeId);
             const index = action.payload.prevState.findIndex(i => i._id ===action.payload.editedRecipeId);
             action.payload.prevState.splice(index,1,action.payload.editedRecipe);
             return action.payload.prevState;
@@ -37,9 +33,18 @@ const reducer = (state = [], action) => {
         }
         case 'DELETE_RECIPE_SUCCESS': {
              console.log('DELETE_RECIPE_SUCCESS');
-            console.log(action.payload.deletedRecipe);
-            console.log(action.payload.prevState.filter(item => item._id!==action.payload.deletedRecipe));
             return action.payload.prevState.filter(item => item._id!==action.payload.deletedRecipe);
+        }
+        case 'FILTER_RECIPES':{
+            console.log('Filtering posts');
+            console.log(action.keyword);
+            const posts = state;
+            const result = posts.filter(item =>
+                // console.log(item)
+                item.title.search( new RegExp(action.keyword))!==-1
+            );
+            console.log(result);
+            return result;
         }
         default: {
             return state;

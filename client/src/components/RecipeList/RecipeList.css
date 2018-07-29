@@ -1,3 +1,10 @@
 .recipe-list-wrapper{
     padding: 30px 25px;
 }
+
+.search-box-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0;
+}
