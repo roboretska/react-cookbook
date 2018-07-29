@@ -16,7 +16,7 @@ class RecipeList extends Component {
         super(props)
         this.state = {
             searchKeyword: '',
-            checked: true
+            checked: false
         }
     }
 
@@ -44,28 +44,25 @@ class RecipeList extends Component {
 
     searchRecipes(keyword) {
         if (keyword !== '') {
-            console.log("im not empty");
             this.props.filterRecipes(keyword);
         } else {
             this.props.getAllRecipes();
         }
     }
 
-    sortRecipes() {
-        console.log("********************");
+    sortRecipes(e) {
 
-        console.log(this.state);
-        this.setState({checked: !this.state.checked});
-        console.log(this.state);
-        if (this.state.checked===true) {
-            this.props.sortByRating();
-        }else{
-            this.props.getAllRecipes();
-        }
+        this.setState({checked: !this.state.checked} , function () {
+            if (this.state.checked===true) {
+                this.props.sortByRating();
+            }else{
+                this.props.getAllRecipes();
+            }
+        });
+
     }
 
     render(){
-        console.log(this.state)
         return (
             <div>
                 <Link to='/recipes/add'>
@@ -82,6 +79,8 @@ class RecipeList extends Component {
                         <Checkbox  label='Sort by rate'
                                    checked={this.state.checked}
                                    onChange={this.sortRecipes.bind(this)}/>
+                                   {/*<input type='checkbox' checked={this.state.checked}*/}
+                                   {/*onChange={this.sortRecipes.bind(this)}/>*/}
                     </span>
                 </div>
                 <Card.Group itemsPerRow={2} className="recipe-list-wrapper">
